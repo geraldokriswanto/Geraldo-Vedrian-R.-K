@@ -1,0 +1,29 @@
+// Soal No. 2b
+function calculateMaxChange(totalAmount, coins) {
+  let combinations = [];
+
+  // fill array with initial value 0
+  for (let i = 0; i <= totalAmount; i++) {
+    combinations[i] = 0;
+  }
+
+  // initialize 1 to index 0;
+  combinations[0] = 1;
+
+  for (let i = 0; i < coins.length; i++) {
+    const currentCoin = coins[i];
+
+    for (let j = 1; j < combinations.length; j++) {
+      if (j >= currentCoin) {
+        combinations[j] += combinations[j - currentCoin];
+      }
+    }
+  }
+
+  return combinations[totalAmount];
+}
+
+// example case 
+console.log('\n\n---TP2-W7-S11-R2\n');
+const soal_2 = [1, 5, 10, 25, 50, 100]
+calculateAndPrint(146, soal_2); // 913 changes
